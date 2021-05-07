@@ -1,44 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 
 <BorderPane prefHeight="420.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controls.MainPanelController">
    <center>
       <ScrollPane fx:id="scroll">
          <content>
-            <TilePane fx:id="tile" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="275.0" prefWidth="599.0" />
+            <TilePane fx:id="tile" alignment="CENTER" prefHeight="140.0" prefWidth="179.0" style="-fx-background-color: 174, 0, 255, 0.19;" />
          </content>
       </ScrollPane>
    </center>
    <top>
       <TextField fx:id="search" alignment="CENTER" prefHeight="25.0" prefWidth="507.0" promptText="поик" BorderPane.alignment="CENTER" />
    </top>
-   <bottom>
-      <HBox alignment="CENTER" prefHeight="35.0" prefWidth="638.0" BorderPane.alignment="CENTER">
-         <children>
-            <ButtonBar>
-              <buttons>
-                <Button alignment="CENTER" mnemonicParsing="false" text="Добавить" />
-                  <Button mnemonicParsing="false" text="Удалить" />
-                  <Button mnemonicParsing="false" text="Изменить" />
-                  <Button mnemonicParsing="false" onAction="#refresh" text="Обновить" />
-              </buttons>
-               <opaqueInsets>
-                  <Insets right="200.0" />
-               </opaqueInsets>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
-            </ButtonBar>
-         </children>
-      </HBox>
-   </bottom>
 </BorderPane>

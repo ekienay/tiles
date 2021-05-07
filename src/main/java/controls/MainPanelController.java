@@ -1,10 +1,8 @@
 package controls;
 
-
 import dao.DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -19,7 +17,6 @@ import service.galService;
 
 import java.io.IOException;
 
-
 public class MainPanelController{
 
     private final SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -32,10 +29,6 @@ public class MainPanelController{
     @FXML
     private TilePane tile;
 
-    private VBox anchorPane;
-
-    private MyListener myListener;
-
     @FXML
     private TextField search;
 
@@ -46,10 +39,10 @@ public class MainPanelController{
         for (Gal gal : galObservableList){
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Title.fxml"));
-            anchorPane = loader.load();
+            VBox anchorPane = loader.load();
 
             TitleController titleController = loader.getController();
-            titleController.initImage(gal,myListener);
+            titleController.initImage(gal);
 
             tile.getChildren().add(anchorPane);
 
@@ -60,8 +53,6 @@ public class MainPanelController{
         galObservableList.addAll(galDAO.read());
     }
 
-
-
     @SneakyThrows
     @FXML
     void initialize() {
@@ -69,7 +60,6 @@ public class MainPanelController{
         initWindow(galObservableList);
         rubberWindow();
         find();
-
     }
 
     public void find(){
@@ -88,14 +78,8 @@ public class MainPanelController{
         });
     }
     private void rubberWindow(){
-        scroll.widthProperty().addListener((obj,oldValue,newValue) ->{
-            tile.setPrefWidth(newValue.doubleValue());
-        });
+        scroll.widthProperty().addListener((obj,oldValue,newValue) ->
+                tile.setPrefWidth(newValue.doubleValue()));
 
-    }
-    @FXML
-    void refresh(ActionEvent event) {
-        galObservableList.clear();
-            initialize();
     }
 }
