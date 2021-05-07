@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cl" prefHeight="245.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controls.TitleController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="GalTitle" contentDisplay="CENTER" text="Label" />
+      <Label fx:id="GalCost" text="Label" />
+      <Label fx:id="GalActive" text="Label" />
+   </children>
+</VBox>
