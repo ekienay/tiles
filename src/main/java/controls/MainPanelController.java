@@ -1,12 +1,15 @@
 package controls;
 
 import dao.DAO;
+import dao.MyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
@@ -16,8 +19,10 @@ import org.hibernate.cfg.Configuration;
 import service.galService;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainPanelController{
+public class MainPanelController implements Initializable {
 
     private final SessionFactory factory = new Configuration().configure().buildSessionFactory();
     private final ObservableList<Gal> galObservableList = FXCollections.observableArrayList();
@@ -32,6 +37,20 @@ public class MainPanelController{
     @FXML
     private TextField search;
 
+    private MyListener myListener;
+
+    VBox vbox;
+
+    private void selectObject(){
+
+        myListener = new MyListener() {
+            @Override
+            public void click(Gal gal) {
+                System.out.println(gal);
+            }
+        };
+    }
+
     private void initWindow(ObservableList<Gal> galObservableList) throws IOException {
         tile.getChildren().clear();
         tile.setHgap(10);
@@ -39,12 +58,12 @@ public class MainPanelController{
         for (Gal gal : galObservableList){
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Title.fxml"));
-            VBox anchorPane = loader.load();
+            vbox = loader.load();
 
             TitleController titleController = loader.getController();
-            titleController.initImage(gal);
+            titleController.initImage(gal,myListener);
 
-            tile.getChildren().add(anchorPane);
+            tile.getChildren().add(vbox);
 
         }
     }
@@ -53,16 +72,7 @@ public class MainPanelController{
         galObservableList.addAll(galDAO.read());
     }
 
-    @SneakyThrows
-    @FXML
-    void initialize() {
-        initData();
-        initWindow(galObservableList);
-        rubberWindow();
-        find();
-    }
-
-    public void find(){
+    private void find(){
         search.setOnKeyReleased(event ->{
             ObservableList<Gal> list = FXCollections.observableArrayList();
             for(Gal gal : galObservableList){
@@ -81,5 +91,15 @@ public class MainPanelController{
         scroll.widthProperty().addListener((obj,oldValue,newValue) ->
                 tile.setPrefWidth(newValue.doubleValue()));
 
+    }
+
+    @SneakyThrows
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initData();
+        initWindow(galObservableList);
+        selectObject();
+        rubberWindow();
+        find();
     }
 }

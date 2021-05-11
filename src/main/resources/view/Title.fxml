@@ -5,17 +5,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controls.TitleController">
+<VBox alignment="CENTER" onMousePressed="#touch" prefHeight="283.0" prefWidth="272.0" styleClass="vbox" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controls.TitleController">
    <children>
-      <ImageView fx:id="imageView" fitHeight="173.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="GalTitle" contentDisplay="CENTER" text="Label">
+      <ImageView fx:id="imageView" cache="true" fitHeight="232.0" fitWidth="276.0" pickOnBounds="true" preserveRatio="true" styleClass="imageView" />
+      <Label fx:id="GalTitle" cache="true" contentDisplay="CENTER" text="Label">
          <font>
             <Font name="System Bold Italic" size="12.0" />
-         </font></Label>
-      <Label fx:id="GalCost" text="Label">
+         </font>
+      </Label>
+      <Label fx:id="GalCost" cache="true" text="Label">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label fx:id="GalActive" text="Label" />
+         </font>
+      </Label>
+      <Label fx:id="GalActive" cache="true" text="Label" />
    </children>
 </VBox>
